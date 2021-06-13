@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/297c61a1-dc7c-45dd-89ce-c207e0b77929/resourceGroups/Lifescc/providers/Microsoft.Web/sites/AgoraTokenGen",
+    "appService.deploySubpath": "."
+}
