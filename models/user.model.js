@@ -5,6 +5,7 @@ let userSchema = new mongoose.Schema({
         unique: true
     },
     id:String,
+    username:String,
 });
 
 let UserModal = mongoose.model('user',userSchema);
@@ -23,8 +24,9 @@ user.addUser = function(handlers) {
         }
     })
 };
+
 user.getPassword = function(handlers) {
-    return UserModal.find({username: handlers.username}, {number:1,_id:1},  function(err, data) {
+    return UserModal.find({number: handlers.number}, {_id:1},  function(err, data) {
         if(!err) {
             handlers.success(data);
         } else {
