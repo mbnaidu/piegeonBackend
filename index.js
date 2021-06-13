@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 // gCmT7YAZKYQg1jx4
+// gCmT7YAZKYQg1jx4
 const uri = process.env.ATLAS_URI;
 
 mongoose.connect('mongodb+srv://madhu:gCmT7YAZKYQg1jx4@cluster0.umdma.mongodb.net/piegeon?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true,useUnifiedTopology:true }
