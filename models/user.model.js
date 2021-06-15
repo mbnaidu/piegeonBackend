@@ -36,6 +36,15 @@ user.getPassword = function(handlers) {
         }
     })
 }
+user.getGroup = function(handlers) {
+    return UserModal.find({id: handlers.id}, {_id:1},  function(err, data) {
+        if(!err) {
+            handlers.success(data);
+        } else {
+            handlers.error(err);
+        }
+    })
+}
 user.usersGroup = function(handlers) {
     return UserModal.findOne({number: handlers.number} , function(err, data) {
         if(!err) {

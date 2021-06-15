@@ -10,4 +10,13 @@ router.post('/creategroup',(req, res) => {
                         id:req.body.data.id,
                     });
 });
+router.post('/getallgroups',(req, res) => {
+        group.findById(req.body.data1.id, function(err, data) {
+            if (err) {
+            res.send(err);
+            } else {
+            res.json(data);
+            }
+        });
+});
 module.exports = router;

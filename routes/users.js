@@ -19,6 +19,15 @@ router.post('/profile',(req, res) => {
             })
         .catch(err => res.status(400).json('Error: ' + err));
 });
+router.post('/getgroups',(req, res) => {
+	user.findById(req.body.data.id)
+        .then(user => {
+            user.save()
+                .then(() => res.json(user))
+                .catch(err => res.status(400).json('Error: ' + err));
+            })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 router.post('/admingroup',(req, res) => {
 	user.findById(req.body.datas.userid)
         .then(user => {
@@ -33,13 +42,6 @@ router.post('/login',(req, res) => {
     user.getPassword({success:function(data){res.status(200).send(data)},
                             error:function(err){res.send(err)},
                         number:req.body.data.number
-                    });
-});
-router.post('/usersgroup',(req, res) => {
-    user.usersGroup({success:function(data){res.status(200).send(data)},
-                            error:function(err){res.send(err)},
-                        number:req.body.data1.number,
-                        groupid:req.body.data1.groupid
                     });
 });
 router.post('/usercheck', function(req, res) {
