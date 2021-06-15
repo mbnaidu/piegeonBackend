@@ -12,7 +12,7 @@ router.post('/getChat',(req, res) => {
 });
 
 router.post('/addMessage',(req, res) => {
-   message.findById(req.body.data.chatId)
+    message.findById(req.body.data.chatId)
         .then(donor => {
             donor.messages.push(req.body.data.message)
             donor.save()
