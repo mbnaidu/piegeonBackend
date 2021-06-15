@@ -6,6 +6,7 @@ let userSchema = new mongoose.Schema({
     },
     id:String,
     username:String,
+    groups:Array,
 });
 
 let UserModal = mongoose.model('user',userSchema);
@@ -15,6 +16,7 @@ const user = mongoose.model('user', userSchema);
 user.addUser = function(handlers) {
     var user = new UserModal();
     user.number = handlers.number;
+    user.groups = handlers.groups;
     user.id = handlers.id;
     return user.save(function(err, data){
         if(!err) {

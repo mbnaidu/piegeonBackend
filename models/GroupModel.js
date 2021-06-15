@@ -15,7 +15,7 @@ group.createGroup = function(handlers) {
                 .then(donor => {
                     donor.groups.push(handlers.groups)
                     donor.save()
-                        .then(() => console.log(donor))
+                        .then(() => {})
                         .catch(err => console.log(err));
                     })
                 .catch(err => console.log(err));
@@ -26,7 +26,7 @@ group.createGroup = function(handlers) {
                 user.id = handlers.id;
                 return user.save(function(err, data){
                     if(!err) {
-                        handlers.success(data);
+                        handlers.success(data._id);
                     } else {
                         handlers.error(err);
                     }

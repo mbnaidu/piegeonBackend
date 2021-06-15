@@ -19,6 +19,16 @@ router.post('/profile',(req, res) => {
             })
         .catch(err => res.status(400).json('Error: ' + err));
 });
+router.post('/group',(req, res) => {
+	user.findById(req.body.datas.userid)
+        .then(user => {
+            user.groups.push(req.body.datas.groupid)
+            user.save()
+                .then(() => res.json(user))
+                .catch(err => res.status(400).json('Error: ' + err));
+            })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 router.post('/login',(req, res) => {
     user.getPassword({success:function(data){res.status(200).send(data)},
                             error:function(err){res.send(err)},
