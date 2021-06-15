@@ -19,7 +19,7 @@ router.post('/profile',(req, res) => {
             })
         .catch(err => res.status(400).json('Error: ' + err));
 });
-router.post('/group',(req, res) => {
+router.post('/admingroup',(req, res) => {
 	user.findById(req.body.datas.userid)
         .then(user => {
             user.groups.push(req.body.datas.groupid)
@@ -34,6 +34,27 @@ router.post('/login',(req, res) => {
                             error:function(err){res.send(err)},
                         number:req.body.data.number
                     });
+});
+router.post('/usersgroup',(req, res) => {
+    user.usersGroup({success:function(data){res.status(200).send(data)},
+                            error:function(err){res.send(err)},
+                        number:req.body.data1.number,
+                        groupid:req.body.data1.groupid
+                    });
+});
+router.post('/usercheck', function(req, res) {
+    user.findOne({number: req.body.data1.number}, function(err, user){
+        if(err) {
+            console.log(err);
+        }
+        if(user) {
+            user.groups.push(req.body.data1.groupid)
+            user.save(function (err) {
+                if(err){console.log(err)}
+            });
+        } else {
+        }
+    });
 });
 router.post('/finduser',(req, res) => {
     
