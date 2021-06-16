@@ -19,4 +19,10 @@ router.post('/getallgroups',(req, res) => {
             }
         });
 });
+router.post('/deletegroup',(req, res) => {
+    console.log(req.body.data1.deletegroupid)
+    group.findByIdAndDelete(req.body.data1.deletegroupid)
+        .then(() => res.json('Exercise deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 module.exports = router;

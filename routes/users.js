@@ -19,11 +19,29 @@ router.post('/profile',(req, res) => {
             })
         .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.post('/exitgroup',(req, res) => {
+	user.findById(req.body.data.userid)
+        .then(user => {
+            user.groups.map((m)=>{
+                if(m === req.body.data.groupid) {
+                    let index = user.groups.indexOf(req.body.data.groupid);
+                    if (index > -1) {
+                        user.groups.splice(index, 1);
+                    }
+                }
+            })
+            user.save()
+                .then(() => res.json(user))
+                .catch(err => res.status(400).json('Error: ' + err));
+            })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 router.post('/getgroups',(req, res) => {
 	user.findById(req.body.data.id)
         .then(user => {
             user.save()
-                .then(() => res.json(user))
+                .then(() =>res.json(user))
                 .catch(err => res.status(400).json('Error: ' + err));
             })
         .catch(err => res.status(400).json('Error: ' + err));
@@ -55,6 +73,26 @@ router.post('/usercheck', function(req, res) {
                 if(err){console.log(err)}
             });
         } else {
+        }
+    });
+});
+router.post('/exitgrouptoall', function(req, res) {
+    user.findOne({number: req.body.data.number}, function(err, user){
+        if(err) {
+            console.log(err);
+        }
+        if(user) {
+            user.groups.map((m)=>{
+                if(m === req.body.data.groupid) {
+                    let index = user.groups.indexOf(req.body.data.groupid);
+                    if (index > -1) {
+                        user.groups.splice(index, 1);
+                    }
+                }
+            })
+            user.save().then(() => res.json(user))
+        } else {
+            res.json(user)
         }
     });
 });
