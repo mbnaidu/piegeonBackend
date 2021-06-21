@@ -30,7 +30,7 @@ user.addUser = function(handlers) {
 };
 
 user.getPassword = function(handlers) {
-    return UserModal.find({number: handlers.number}, {_id:1},  function(err, data) {
+    return UserModal.find({number: handlers.number}, {_id:1,id:1,},  function(err, data) {
         if(!err) {
             handlers.success(data);
         } else {
@@ -48,7 +48,7 @@ user.getGroup = function(handlers) {
     })
 }
 user.usersGroup = function(handlers) {
-    return UserModal.findOne({number: handlers.number} , function(err, data) {
+    return UserModal.findOne({number: handlers.number} ,{ _id:1,id:1}, function(err, data) {
         if(!err) {
             
         } else {

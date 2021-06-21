@@ -46,6 +46,26 @@ router.post('/getgroups',(req, res) => {
             })
         .catch(err => res.status(400).json('Error: ' + err));
 });
+router.post('/setspecialmessagefrom',(req, res) => {
+	user.findById(req.body.data.from)
+        .then(add => {
+            add.special.push(req.body.data.special)
+            add.save()
+                .then(() =>{})
+                .catch(err => res.status(400).json('Error: ' + err));
+            })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+router.post('/setspecialmessageto',(req, res) => {
+	user.findById(req.body.data.to)
+        .then(add => {
+            add.special.push(req.body.data.special)
+            add.save()
+                .then(() =>{})
+                .catch(err => res.status(400).json('Error: ' + err));
+            })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 router.post('/admingroup',(req, res) => {
 	user.findById(req.body.datas.userid)
         .then(user => {
