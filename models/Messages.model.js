@@ -21,14 +21,10 @@ message.addMessage = function(handlers) {
 message.getChat = function(handlers) {
     return messagesModal.find({userId: handlers.userId,senderId:handlers.senderId}, {userId:1,senderId:1,_id:1,messages:1},  function(err, data) {
         if(data.length > 0) {
-            handlers.success(data);
+            handlers.success(data)
         }
         else {
-            return messagesModal.find({userId: handlers.senderId,senderId:handlers.userId}, {userId:1,senderId:1,_id:1,messages:1},  function(err, data) {
-                if(data.length > 0) {
-                    handlers.success(data);
-                } else {
-                    var message = new messagesModal();
+            var message = new messagesModal();
                 message.userId = handlers.userId;
                 message.senderId = handlers.senderId;
                 message.messages = message.messages;
@@ -39,8 +35,6 @@ message.getChat = function(handlers) {
                         handlers.error(err);
                     }
                 })
-                }
-            })
         }
     })
 }

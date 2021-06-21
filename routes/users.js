@@ -76,6 +76,17 @@ router.post('/usercheck', function(req, res) {
         }
     });
 });
+router.post('/messagecheck', function(req, res) {
+    user.findOne({number: req.body.data.number}, function(err, user){
+        if(err) {
+            console.log(err);
+        }
+        if(user) {
+            user.save().then(() => res.json(user))
+        } else {
+        }
+    });
+});
 router.post('/exitgrouptoall', function(req, res) {
     user.findOne({number: req.body.data.number}, function(err, user){
         if(err) {
