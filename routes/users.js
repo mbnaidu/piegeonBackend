@@ -51,7 +51,7 @@ router.post('/setspecialmessagefrom',(req, res) => {
         .then(add => {
             add.special.push(req.body.data.special)
             add.save()
-                .then(() =>{})
+                .then(() =>(res.json(add)))
                 .catch(err => res.status(400).json('Error: ' + err));
             })
         .catch(err => res.status(400).json('Error: ' + err));
@@ -61,7 +61,7 @@ router.post('/setspecialmessageto',(req, res) => {
         .then(add => {
             add.special.push(req.body.data.special)
             add.save()
-                .then(() =>{})
+                .then(() =>(res.json(add)))
                 .catch(err => res.status(400).json('Error: ' + err));
             })
         .catch(err => res.status(400).json('Error: ' + err));
